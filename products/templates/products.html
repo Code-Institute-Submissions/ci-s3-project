@@ -21,7 +21,7 @@
                                 </div>
                                 <h3><a href="#">{{ product.name }}</a></h3>
                                 <div class="pi-price">{{ product.price }}</div>
-                                <a href="#" class="btn add2cart">Add to cart</a>
+                                <a href="{% url 'add_to_cart' product.id %}" class="btn add2cart">Add to cart</a>
                             </div>
                         </div>
 

@@ -1,5 +1,8 @@
 Django==1.10.6
 django-forms-bootstrap==3.0.1
 django-gravatar2==1.4.0
+djangorestframework==3.6.2
 olefile==0.44
 Pillow==4.0.0
+requests==2.13.0
+stripe==1.51.0

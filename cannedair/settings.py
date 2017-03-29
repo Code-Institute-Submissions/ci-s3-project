@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'django_gravatar',
     'django_forms_bootstrap',
     'products',
+    'payments',
+    'cart',
+    'rest_framework',
+    'stripe',
 
 ]
 
@@ -131,3 +135,11 @@ STATICFILES_DIR = (os.path.join(BASE_DIR, "static"),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAdminUser',
+    ],
+}
+
+STRIPE_PUBLISHABLE = ''
+STRIPE_SECRET = ''
