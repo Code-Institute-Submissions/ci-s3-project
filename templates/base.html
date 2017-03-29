@@ -38,9 +38,21 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li>
-                        <a href="#"><i class="fa fa-user-circle-o"></i> My Account</a>
+                        <a href="{% url 'profile' %}"><i class="fa fa-user-circle-o"></i> My Account</a>
                     </li>
+                    <li>
+                        <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log Out</a>
+                    </li>
+                    {%  else %}
+                    <li>
+                        <a href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log In</a>
+                    </li>
+                     <li>
+                         <a href="{% url 'register' %}"><i class="fa fa-user-plus"></i> Register</a>
+                     </li>
+                    {% endif %}
                     <li>
                         <a class="page-scroll" href="#explore"><i class="fa fa-leaf"></i> Explore</a>
                     </li>
@@ -54,8 +66,10 @@
         <!-- /.container -->
     </nav>
 
-    {% block content %}
-    {% endblock %}
+
+                {% block content %}
+                {% endblock %}
+
 
     <section id="contact" class="container content-section text-center">
         <div class="row">

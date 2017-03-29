@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load gravatar %}
+{% block content %}
+    <section class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+
+            <h2>Hello, {{ user.username }} !</h2>
+            <img src="{% gravatar_url user.email 150 %}" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-circle">
+            <p>You are successfully logged in ! </p>
+                <p> >>> Here are your purchases <<< </p>
+
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

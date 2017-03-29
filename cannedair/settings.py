@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cannedair',
     'home',
+    'accounts',
+    'django_forms_bootstrap',
+    'django_gravatar',
 ]
 
 MIDDLEWARE = [
