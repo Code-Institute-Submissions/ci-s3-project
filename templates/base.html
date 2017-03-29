@@ -28,7 +28,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#">
+                <a class="navbar-brand page-scroll" href="{% url 'index' %}">
                     <i class="fa fa-home"></i><span class="light"> Home</span>
                 </a>
             </div>
@@ -54,7 +54,7 @@
                      </li>
                     {% endif %}
                     <li>
-                        <a class="page-scroll" href="#explore"><i class="fa fa-leaf"></i> Explore</a>
+                        <a class="page-scroll" href="{% url 'products' %}"><i class="fa fa-leaf"></i> Explore</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact"><i class="fa fa-vcard-o"></i> Contact</a>
