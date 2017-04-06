@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
 {% block content %}
-    <section class="container content-section text-center">
+    <section class="container login content-section">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-4">
 
                 {% if next %}
                   <form role="form" method="post" action="{% url 'login' %}?next={{ next }}">
@@ -11,16 +11,22 @@
                   <form role="form" method="post" action="{% url 'login' %}">
                 {% endif %}
 
-                      <legend>Login</legend>
+                      <h3>Login</h3>
                         {% csrf_token %}
                         {{ form | as_bootstrap }}
                       <div class="form-group">
                         <button type="submit" class="btn btn-primary">Login</button>
                       </div>
                   </form>
-
-
             </div>
+          <div class="col-lg-6">
+
+              <h3>Registered Users get great deals!<span class="glyphicon glyphicon-tags"></span></h3>
+                    <h4>If you are not Registerd yet... </h4>
+                    <h5><i class="fa fa-users" aria-hidden="true"></i>  <a href="{% url 'register' %}">   Join us now!</a></h5>
+            </div>
+
+
         </div>
     </section>
 {% endblock %}

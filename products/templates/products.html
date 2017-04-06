@@ -1,36 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-    <section class="container content-section text-center">
-        <div class="row">
-{#            <div class="col-lg-8 col-lg-offset-2">#}
+    <section class="container products-selection content-section text-center">
+        <div class="row products container">
 
-
-                <div class="container">
-                    <div class="row">
 
                     {% for product in products %}
 
-                        <div class="col-md-4">
-                            <div class="product-item">
-                                <div class="pi-img-wrapper">
-                                    <img height="350" width="350" src="{{ MEDIA_URL }}{{ product.image }}" class="img-responsive" alt="{{ product.name }}">
-                                        <div>
-                                            <a href="#" class="btn">Zoom</a>
-                                            <a href="#" class="btn">View</a>
-                                        </div>
-                                </div>
-                                <h3><a href="#">{{ product.name }}</a></h3>
-                                <div class="pi-price">{{ product.price }}</div>
-                                <a href="{% url 'add_to_cart' product.id %}" class="btn add2cart">Add to cart</a>
+                        <div class="wrapper col-md-4">
+                        <div class="panel animated slideInDown">
+                            <img src="{{ MEDIA_URL }}{{ product.image }}" class="img-responsive" alt="{{ product.name }}" />
+                            <h3>{{ product.name }}</h3>
+                            <p>Canned Air from {{ product.name }} is a middle-sized empty can, a gag souvenir with witty texts and images printed on it. The can is 88 mm (3,46 in) high and 86mm (3,38 in) in diameter.</p>
+                            <div class="pi-price"> {{ product.price }}</div>
+                            <div class="slide">
+                              <h4>Details</h4>
+                              <p>{{ product.description | linebreaks }}</p>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-default add2cart"><i class="fa fa-cart-arrow-down"> | Add to cart </i></a>
                             </div>
                         </div>
+                        </div>
 
-                    {% endfor %}
+                     {% endfor %}
 
-                   </div>
-                </div>
 
-{#            </div>#}
-        </div>
+         </div>
     </section>
 {% endblock %}

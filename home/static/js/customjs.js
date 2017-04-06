@@ -25,3 +25,10 @@ $(function() {
 $('.navbar-collapse ul li a').click(function() {
     $(".navbar-collapse").collapse('hide');
 });
+
+// Auto Close Alert Messages
+$(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+    $(".alert-dismissible").alert('close');
+});
+
+

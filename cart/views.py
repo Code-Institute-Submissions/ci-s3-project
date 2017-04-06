@@ -81,13 +81,46 @@ def add_to_cart(request, id):
         )
 
     cartItem.save()
+    messages.success(request, "Your item has successfully Added to your cart.")
+    return redirect(reverse('products'))
+
+
+@login_required(login_url="/login")
+def add_to_cart_cart(request, id):
+    product = get_object_or_404(Product, pk=id)
+    quantity = 1
+    # quantity=int(request.POST.get('quantity'))
+
+    try:
+        cartItem = CartItem.objects.get(user=request.user, product=product)
+        cartItem.quantity += quantity
+    except CartItem.DoesNotExist:
+        cartItem = CartItem(
+            user=request.user,
+            product=product,
+            quantity=quantity
+        )
+
+    cartItem.save()
     return redirect(reverse('cart'))
 
 
+@login_required(login_url="/login")
 def remove_from_cart(request, id):
-    CartItem.objects.get(id=id).delete()
+    cartItem = CartItem.objects.get(user=request.user, id=id)
+    cartItem.quantity -= 1
+
+    if cartItem.quantity > 0:
+        cartItem.save()
+    else:
+        cartItem.delete()
+
     return redirect(reverse('cart'))
 
+# @login_required(login_url="/login")
+# def remove_from_cart(request, id):
+#     CartItem.objects.get(id=id).delete()
+#     return redirect(reverse('cart'))
 
 
 class UserViewSet(viewsets.ModelViewSet):

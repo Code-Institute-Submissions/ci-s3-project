@@ -19,7 +19,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                messages.error(request, "You have successfully logged in")
+                messages.error(request, "You are successfully logged in !")
 
                 if request.GET and 'next' in request.GET:
                     next = request.GET['next']
@@ -34,6 +34,7 @@ def login(request):
 
     args = {'form': form, 'next': request.GET['next'] if request.GET and 'next' in request.GET else ''}
     args.update(csrf(request))
+    # messages.success(request, 'You are successfully logged in !')
     return render(request, 'login.html', args)
 
 
