@@ -25,7 +25,6 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '&0r$3_s-pz*r6=5%nt04o$_10qq93uip0u@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -47,6 +46,7 @@ INSTALLED_APPS = [
     'cart',
     'rest_framework',
     'stripe',
+    'storages'
 
 ]
 
@@ -114,6 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
+
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -126,14 +127,33 @@ USE_L10N = True
 
 USE_TZ = True
 
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
+
+ALLOWED_HOSTS = []
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+AWS_HEADERS = {  # see http://developer.yahoo.com/performance/rules.html#expires
+     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+     'Cache-Control': 'max-age=94608000',
+ }
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+
 STATICFILES_DIR = (os.path.join(BASE_DIR, "static"),)
-MEDIA_URL = '/media/'
+STATICFILES_LOCATION = 'static'
+STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+STATIC_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, STATICFILES_LOCATION)
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = "https://%s/%s/" % (AWS_S3_CUSTOM_DOMAIN, MEDIAFILES_LOCATION)
+DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -141,6 +161,3 @@ REST_FRAMEWORK = {
     ],
     'PAGE_SIZE': 10
 }
-
-STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
-STRIPE_SECRET = os.getenv('STRIPE_SECRET')
