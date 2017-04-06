@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-
 from .models import CartItem
 from django.contrib.auth.decorators import login_required
 from products.models import Product
@@ -9,7 +8,7 @@ from django.contrib import messages
 from django.conf import settings
 import stripe
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
+# from .serializers import UserSerializer
 
 from rest_framework import viewsets
 from .serializers import CartItemSerializer
@@ -67,20 +66,13 @@ def user_cart(request):
 @login_required(login_url="/login")
 def add_to_cart(request, id):
     product = get_object_or_404(Product, pk=id)
-    quantity = 1
-    # quantity=int(request.POST.get('quantity'))
-
-    try:
-        cartItem = CartItem.objects.get(user=request.user, product=product)
-        cartItem.quantity += quantity
-    except CartItem.DoesNotExist:
-        cartItem = CartItem(
-            user=request.user,
-            product=product,
-            quantity=quantity
-        )
-
+    cartItem = CartItem(
+        user=request.user,
+        product=product,
+        quantity=1
+    )
     cartItem.save()
+
     messages.success(request, "Your item has successfully Added to your cart.")
     return redirect(reverse('products'))
 
@@ -89,7 +81,6 @@ def add_to_cart(request, id):
 def add_to_cart_cart(request, id):
     product = get_object_or_404(Product, pk=id)
     quantity = 1
-    # quantity=int(request.POST.get('quantity'))
 
     try:
         cartItem = CartItem.objects.get(user=request.user, product=product)
@@ -116,19 +107,6 @@ def remove_from_cart(request, id):
         cartItem.delete()
 
     return redirect(reverse('cart'))
-
-# @login_required(login_url="/login")
-# def remove_from_cart(request, id):
-#     CartItem.objects.get(id=id).delete()
-#     return redirect(reverse('cart'))
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 
 class CartItemViewSet(viewsets.ModelViewSet):

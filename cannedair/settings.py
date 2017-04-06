@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&0r$3_s-pz*r6=5%nt04o$_10qq93uip0u@6+_gg3aa3n*(@u6'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '&0r$3_s-pz*r6=5%nt04o$_10qq93uip0u@6+_gg3aa3n*(@u6')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -139,6 +139,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
     ],
+    'PAGE_SIZE': 10
 }
 
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
