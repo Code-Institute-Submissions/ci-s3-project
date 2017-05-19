@@ -4,6 +4,7 @@ django-forms-bootstrap==3.0.1
 django-gravatar2==1.4.0
 django-storages==1.5.2
 djangorestframework==3.6.2
+gunicorn==19.7.1
 olefile==0.44
 Pillow==4.0.0
 requests==2.13.0

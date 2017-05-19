@@ -15,7 +15,8 @@
                             <div class="slide">
                               <h4>Details</h4>
                               <p>{{ product.description | linebreaks }}</p>
-                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-default add2cart"><i class="fa fa-cart-arrow-down"> | Add to cart </i></a>
+                                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-default add2cart"><i class="fa fa-cart-arrow-down"> Add to cart </i></a>
+{#                                    <a href="{% url 'buy_now_stripe' product.id %}" class="btn btn-default add2cart"> Buy Now</a>#}
                             </div>
                         </div>
                         </div>

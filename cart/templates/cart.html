@@ -14,9 +14,9 @@
 
 {% block content %}
 
-     <section class="container content-section">
+     <section class="container cart content-section animated slideInDown">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-6 col-lg-offset-3">
 
 				<ul>
 					<li class="cart-row list-inline columnCaptions">
@@ -30,8 +30,9 @@
                                 <li class="cart-row">
                                     <span class="quantity">{{ item.quantity }}</span>
                                     <span class="itemName">{{ item.product.name }}</span>
+                                    <a class="addRemove" href="{% url 'remove_from_cart_cart' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
                                     <a class="addRemove" href="{% url 'add_to_cart_cart' item.product.id %}"><span class="glyphicon glyphicon-plus"></span></a>
-                                    <a class="addRemove" href="{% url 'remove_from_cart' item.id %}"><span class="glyphicon glyphicon-trash"></span></a>
+                                    <a class="addRemove" href="{% url 'remove_from_cart' item.id %}"><span class="glyphicon glyphicon-minus"></span></a>
                                     <span class="price">{{ item.cost }}</span>
 
 

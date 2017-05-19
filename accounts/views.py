@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='/login?next=profile')
+@login_required(login_url='/login')
 def profile(request):
     return render(request, 'profile.html')
 

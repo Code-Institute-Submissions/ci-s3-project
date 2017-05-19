@@ -7,10 +7,10 @@ from .serializers import ProductSerializer
 
 def all_products(request):
     products = Product.objects.all()
-    # args = {}
-    # args.update(csrf(request))
+    args = {}
+    args.update(csrf(request))
     return render(request, "products.html", {"products": products}
-                  # , args
+                  , args
     )
 
 class ProductViewSet(viewsets.ModelViewSet):

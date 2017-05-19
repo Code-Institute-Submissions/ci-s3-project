@@ -17,8 +17,7 @@ from .serializers import CartItemSerializer
 stripe.api_key = settings.STRIPE_SECRET
 
 
-
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def user_cart(request):
     cartItems = CartItem.objects.filter(user=request.user)
     total = 0
@@ -63,7 +62,7 @@ def user_cart(request):
 
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def add_to_cart(request, id):
     product = get_object_or_404(Product, pk=id)
     cartItem = CartItem(
@@ -77,7 +76,7 @@ def add_to_cart(request, id):
     return redirect(reverse('products'))
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def add_to_cart_cart(request, id):
     product = get_object_or_404(Product, pk=id)
     quantity = 1
@@ -96,7 +95,7 @@ def add_to_cart_cart(request, id):
     return redirect(reverse('cart'))
 
 
-@login_required(login_url="/login")
+@login_required(login_url="/accounts/login")
 def remove_from_cart(request, id):
     cartItem = CartItem.objects.get(user=request.user, id=id)
     cartItem.quantity -= 1
@@ -108,6 +107,10 @@ def remove_from_cart(request, id):
 
     return redirect(reverse('cart'))
 
+@login_required(login_url="/accounts/login")
+def remove_from_cart_cart(request, id):
+    CartItem.objects.get(id=id).delete()
+    return redirect(reverse('cart'))
 
 class CartItemViewSet(viewsets.ModelViewSet):
     """
