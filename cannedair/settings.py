@@ -130,7 +130,7 @@ USE_TZ = True
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['breatheworld.herokuapp.com']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
