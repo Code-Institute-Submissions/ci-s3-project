@@ -36,7 +36,7 @@ def remove_from_cart(request, id):
     cartItem = CartItem.objects.get(user=request.user, id=id)
     cartItem.quantity -= 1 
 
-    if cartItem.quantity > 0: `-->  prevents item below 0 which could lead to negative cart`
+    if cartItem.quantity > 0:      ** --> prevents item below 0 which could lead to negative cart **
         cartItem.save()
     else:
         cartItem.delete()
