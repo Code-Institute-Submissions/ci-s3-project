@@ -7,7 +7,7 @@
 
             <h2>Hello, {{ user.username }} !</h2>
             <img src="{% gravatar_url user.email 150 %}" alt="Looking Awesome!" title="Looking Awesome !" style="width:100px; height: 100px; background-color: #12ABB2; color: #ffffff;" class="img-thumbnail">
-            <p>Last login on: {{ user.last_login }}</p>
+
 
             </div>
             <div id="right">
@@ -15,8 +15,8 @@
                 <ul>
                     <li><p><strong>e-mail:</strong> {{ user.email }}</p></li>
                 </ul>
-                        <hr>
-                                <p> >>> Here are will be purchases history or status <<< </p>
+                    <hr>
+                     <p>Last login on: {{ user.last_login }}</p>
 
 
             </div>
